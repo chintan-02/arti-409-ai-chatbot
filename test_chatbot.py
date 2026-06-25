@@ -11,3 +11,6 @@ def test_model_is_a_known_claude_model():
 def test_system_prompt_mentions_the_course():
     # The assistant should know it's helping with ARTI 409.
     assert "ARTI 409" in chatbot.SYSTEM_PROMPT
+
+
+
