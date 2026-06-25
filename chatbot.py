@@ -1,5 +1,5 @@
 """
-your course — Simple AI Chatbot
+ARTI 409 — Simple AI Chatbot
 A minimal command-line chatbot powered by Anthropic's Claude API.
 
 This file is intentionally small and heavily commented. The point of this
@@ -25,7 +25,7 @@ MODEL = "claude-opus-4-8"
 
 # A "system prompt" sets the chatbot's personality and instructions.
 SYSTEM_PROMPT = (
-    "You are a friendly, encouraging teaching assistant for your course, "
+    "You are a friendly, encouraging teaching assistant for ARTI 409, "
     "a college class about artificial intelligence. Keep your answers clear "
     "and concise, and explain technical ideas in plain language."
 )
@@ -47,7 +47,7 @@ def main() -> None:
     conversation = []
 
     print("=" * 60)
-    print("  your course AI Chatbot   (type 'quit' to exit)")
+    print("  ARTI 409 AI Chatbot   (type 'quit' to exit)")
     print("=" * 60)
 
     while True:
