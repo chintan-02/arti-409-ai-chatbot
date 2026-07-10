@@ -1,4 +1,4 @@
-# ARTI 409 AI Chatbot — API Integration & CI/CD Engineering Lab
+# ARTI 409 AI Chatbot — AI Maintenance & CI/CD Classroom Lab
 
 <div align="center">
 
@@ -7,17 +7,21 @@
 ![Pytest](https://img.shields.io/badge/Testing-pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Course](https://img.shields.io/badge/SAIT-ARTI--409--A-005EB8?style=flat-square)
+![Term](https://img.shields.io/badge/Term-Spring_2026-4B5563?style=flat-square)
 
-**A focused engineering lab demonstrating LLM API integration, automated testing, continuous integration, pull requests, regression detection, and safe rollback.**
+**A Spring 2026 SAIT classroom lab demonstrating AI API integration, automated testing, continuous integration, pull requests, regression detection, and safe rollback.**
 
 </div>
 
 ---
 
 > [!NOTE]
-> **Project level:** Completed course engineering lab.
+> This repository documents a **classroom learning activity completed during Spring 2026** for **AI Management and Maintenance (ARTI-409-A)** in SAIT's **Integrated Artificial Intelligence** program.
 >
-> This repository is intentionally small. Its value is not application complexity; it demonstrates disciplined Git workflows, API-key handling, automated testing, GitHub Actions, pull-request practices, failure detection, and safe recovery.
+> The activity focused on Anthropic API integration, GitHub Desktop, branching, pull requests, automated testing with `pytest`, GitHub Actions CI, intentional regression detection, and safe rollback using `git revert`.
+>
+> This is a completed course lab rather than a standalone production AI product. It is retained to demonstrate practical AI maintenance, version-control, testing, CI/CD, and recovery-workflow fundamentals.
 >
 > My current flagship work focuses on production-minded AI/ML systems, NLP, RAG, FastAPI, model evaluation, responsible AI, and full-stack AI product engineering.
 
@@ -25,9 +29,9 @@
 
 ## Project Overview
 
-This project began as a lightweight command-line chatbot that connects to the Anthropic API and maintains conversation context during a terminal session.
+This repository began as a classroom chatbot activity for the Spring 2026 **AI Management and Maintenance (ARTI-409-A)** course at **SAIT — Southern Alberta Institute of Technology**.
 
-It was later extended into a practical software-engineering lab covering:
+The application is a lightweight Python command-line chatbot that connects to the Anthropic API and maintains conversation context during a terminal session. The activity was then extended into a practical AI maintenance and software-engineering lab covering:
 
 - LLM API integration
 - Environment-variable configuration
@@ -46,6 +50,23 @@ The repository demonstrates an important AI engineering principle:
 
 ---
 
+## Course Context
+
+| Field | Details |
+|---|---|
+| Institution | SAIT — Southern Alberta Institute of Technology |
+| Program | Integrated Artificial Intelligence |
+| Course | AI Management and Maintenance |
+| Course code | ARTI-409-A |
+| Term | Spring 2026 |
+| Activity type | Classroom learning lab |
+| Primary focus | AI API integration, Git workflows, testing, CI/CD, failure detection, and rollback |
+| Status | Completed |
+
+The application was intentionally kept small so the focus remained on maintaining, testing, protecting, and recovering an AI-enabled codebase rather than building a large chatbot product.
+
+---
+
 ## Engineering Snapshot
 
 | Area | Implementation |
@@ -59,7 +80,7 @@ The repository demonstrates an important AI engineering principle:
 | Collaboration workflow | Feature branch and pull request |
 | Failure exercise | Intentional regression |
 | Recovery method | `git revert` |
-| Primary purpose | Git, CI/CD, testing, and API integration practice |
+| Primary purpose | AI management and maintenance, Git, CI/CD, testing, and API integration practice |
 
 ---
 
@@ -411,7 +432,7 @@ A larger AI application would also test:
 
 ## Key Learning
 
-This project reinforced that professional AI engineering requires more than calling a model API.
+This classroom activity reinforced that professional AI engineering and maintenance require more than calling a model API.
 
 A reliable workflow also requires:
 
@@ -459,4 +480,4 @@ This project is available under the [MIT License](LICENSE).
 
 ## Repository Note
 
-This repository remains public as evidence of API integration, Git, testing, CI/CD, pull-request, and rollback fundamentals. It is not one of my current flagship AI engineering projects.
+This repository remains public as evidence of the practical skills developed in the Spring 2026 SAIT **AI Management and Maintenance (ARTI-409-A)** classroom lab, including API integration, Git, testing, CI/CD, pull requests, regression detection, and rollback. It is not one of my current flagship AI engineering projects.
