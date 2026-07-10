@@ -1,315 +1,462 @@
-# 🤖 ARTI 409 AI Chatbot
+# ARTI 409 AI Chatbot — API Integration & CI/CD Engineering Lab
 
-A tiny, friendly chatbot that talks to **Claude** (Anthropic's AI) right from your
-terminal. It's about 60 lines of Python.
+<div align="center">
 
-> **Why does this repo exist?** We're using it to learn **GitHub Desktop** — how to
-> commit, push, branch, and open a pull request. The chatbot is kept deliberately
-> simple so the focus stays on Git and GitHub. New to GitHub Desktop? Start with
-> **[TEACHING_GUIDE.md](TEACHING_GUIDE.md)**.
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
+![Anthropic](https://img.shields.io/badge/Anthropic-API-191919?style=flat-square)
+![Pytest](https://img.shields.io/badge/Testing-pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+
+**A focused engineering lab demonstrating LLM API integration, automated testing, continuous integration, pull requests, regression detection, and safe rollback.**
+
+</div>
 
 ---
 
-## What it does
+> [!NOTE]
+> **Project level:** Completed course engineering lab.
+>
+> This repository is intentionally small. Its value is not application complexity; it demonstrates disciplined Git workflows, API-key handling, automated testing, GitHub Actions, pull-request practices, failure detection, and safe recovery.
+>
+> My current flagship work focuses on production-minded AI/ML systems, NLP, RAG, FastAPI, model evaluation, responsible AI, and full-stack AI product engineering.
 
-You type a message, Claude types back — and it remembers the conversation as you go:
+---
 
-```
+## Project Overview
+
+This project began as a lightweight command-line chatbot that connects to the Anthropic API and maintains conversation context during a terminal session.
+
+It was later extended into a practical software-engineering lab covering:
+
+- LLM API integration
+- Environment-variable configuration
+- Secret-management fundamentals
+- Git branches and structured commits
+- Pull-request workflows
+- Automated testing with `pytest`
+- Continuous integration with GitHub Actions
+- Intentional regression testing
+- CI failure investigation
+- Safe rollback using `git revert`
+
+The repository demonstrates an important AI engineering principle:
+
+> Building an AI feature is only one part of the job. The code also needs testing, version control, failure detection, and a safe recovery process.
+
+---
+
+## Engineering Snapshot
+
+| Area | Implementation |
+|---|---|
+| Application | Python command-line chatbot |
+| AI provider | Anthropic API |
+| Conversation behavior | In-session message history |
+| Configuration | Environment variables with `.env` |
+| Testing | `pytest` smoke tests |
+| Continuous integration | GitHub Actions |
+| Collaboration workflow | Feature branch and pull request |
+| Failure exercise | Intentional regression |
+| Recovery method | `git revert` |
+| Primary purpose | Git, CI/CD, testing, and API integration practice |
+
+---
+
+## What the Chatbot Does
+
+The user enters a message in the terminal, the application sends the conversation to the configured Anthropic model, and the response is streamed back to the command line.
+
+Example interaction:
+
+```text
 ============================================================
   ARTI 409 AI Chatbot   (type 'quit' to exit)
 ============================================================
 
-You: Explain what an API is, like I'm five.
-Claude: An API is like a waiter at a restaurant...
+You: Explain what an API is in simple language.
+
+Claude: An API is a structured way for two software systems
+to communicate with each other...
 
 You: quit
-Goodbye! 👋
+
+Goodbye!
 ```
 
----
-
-## Setup (do this once)
-
-You'll need **Python 3.9+** installed.
-
-1. **Install the required packages**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **Add your API key**
-   - Get a key from <https://console.anthropic.com/>
-   - Copy `.env.example` to a new file named `.env`
-   - Paste your key into `.env`:
-     ```
-     ANTHROPIC_API_KEY=sk-ant-...your-real-key...
-     ```
-   - 🔒 Your `.env` file is listed in [`.gitignore`](.gitignore), so your key will
-     **never** be uploaded to GitHub. Keeping secrets out of Git is an important habit!
-
-3. **Run the chatbot**
-   ```bash
-   python chatbot.py
-   ```
+The chatbot keeps conversation history during the active session so follow-up questions can use earlier context.
 
 ---
 
-## ✏️ Your turn (a quick GitHub Desktop exercise)
-
-Add a line below with your name and the date you cloned this repo, then **commit and
-push** the change using GitHub Desktop. This is the easiest way to see your first commit
-show up on GitHub.
-
-**Students who completed the setup:**
-
-- _Add your name here!_
-
----
-
-## How it works
-
-| File                  | What it's for                                              |
-| --------------------- | ---------------------------------------------------------- |
-| `chatbot.py`          | The whole app — reads your input, calls Claude, streams the reply |
-| `requirements.txt`    | The Python packages to install                             |
-| `.env.example`        | A template for your API key (you copy it to `.env`)        |
-| `.gitignore`          | Tells Git which files to ignore (like your secret `.env`)  |
-| `TEACHING_GUIDE.md`   | Step-by-step GitHub Desktop walkthrough                    |
-
-The chatbot uses the **`claude-opus-4-8`** model. Want faster, cheaper replies while
-testing? Open `chatbot.py` and change the `MODEL` line to `"claude-haiku-4-5"`.
-
----
-
-## License
-
-[MIT](LICENSE) — free to use, change, and share.
-
-
----
-
-# GitHub Actions, CI, and Rollback Lab
-
-This repository was also used to practice a real-world Git and GitHub maintenance workflow. The main goal of this activity was to understand how developers keep a project healthy after changes are made.
-
-In this lab, I practiced:
-
-* Creating a separate Git branch
-* Adding automated tests
-* Creating a GitHub Actions workflow
-* Opening and merging a pull request
-* Reading CI status checks
-* Intentionally breaking the code
-* Watching GitHub Actions catch the failure
-* Safely rolling back using `git revert`
-
----
-
-## Why This Activity Matters
-
-GitHub is not only used to store code. It is also used to protect code quality.
-
-In real software and AI projects, a small change can break the system. Continuous Integration helps catch problems early by automatically running tests every time code is pushed or a pull request is created.
-
-This activity helped me understand the professional workflow of:
+## High-Level Architecture
 
 ```text
-Build → Test → Push → Review → Merge → Break → Detect → Revert → Recover
+User enters terminal message
+            ↓
+Python validates the input
+            ↓
+Conversation history is updated
+            ↓
+Anthropic API request is created
+            ↓
+Model response is streamed
+            ↓
+Response is displayed in the terminal
 ```
 
 ---
 
-## Workflow Practiced
-
-The full workflow followed in this lab was:
+## Repository Structure
 
 ```text
-Create own GitHub repository
-        ↓
-Create a new branch: add-ci
-        ↓
-Add automated tests
-        ↓
-Add GitHub Actions workflow
-        ↓
-Push branch to GitHub
-        ↓
-Open pull request: add-ci → main
-        ↓
-GitHub Actions runs automatically
-        ↓
-CI check passes
-        ↓
-Merge pull request into main
-        ↓
-Pull latest main locally
-        ↓
-Break the code intentionally
-        ↓
-Push broken change to main
-        ↓
-GitHub Actions fails
-        ↓
-Use git revert to undo the bad commit
-        ↓
-Push revert commit
-        ↓
-GitHub Actions passes again
+arti-409-ai-chatbot/
+│
+├── chatbot.py
+├── test_chatbot.py
+├── requirements.txt
+├── .env.example
+├── .gitignore
+├── TEACHING_GUIDE.md
+├── LICENSE
+├── README.md
+│
+└── .github/
+    └── workflows/
+        └── ci.yml
+```
+
+### File responsibilities
+
+| File | Purpose |
+|---|---|
+| `chatbot.py` | Runs the command-line chatbot and Anthropic API interaction |
+| `test_chatbot.py` | Contains smoke tests used by CI |
+| `requirements.txt` | Lists Python dependencies |
+| `.env.example` | Documents the required environment-variable structure |
+| `.gitignore` | Prevents common local and secret files from being tracked |
+| `TEACHING_GUIDE.md` | Provides the original GitHub Desktop learning walkthrough |
+| `.github/workflows/ci.yml` | Defines the automated GitHub Actions test workflow |
+| `LICENSE` | MIT license |
+
+---
+
+## Local Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/chintan-02/arti-409-ai-chatbot.git
+cd arti-409-ai-chatbot
+```
+
+### 2. Create a virtual environment
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+On Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configure the API key
+
+Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+Add your Anthropic API key:
+
+```text
+ANTHROPIC_API_KEY=your-api-key
+```
+
+> [!WARNING]
+> Never commit a real API key.
+>
+> The `.gitignore` file is configured to exclude `.env`, but developers should still verify staged files before every commit.
+
+### 5. Run the chatbot
+
+```bash
+python chatbot.py
+```
+
+### 6. Run the tests
+
+```bash
+pytest
 ```
 
 ---
 
-## Files Added for CI
+## GitHub Actions Continuous Integration
 
-### `test_chatbot.py`
+The repository includes a GitHub Actions workflow that automatically runs the test suite when code is pushed or a pull request is opened.
 
-This file contains small smoke tests for the chatbot.
+### CI workflow
 
-The tests check that:
+```text
+Push or pull request
+        ↓
+GitHub Actions starts
+        ↓
+Repository code is checked out
+        ↓
+Python environment is created
+        ↓
+Dependencies are installed
+        ↓
+pytest executes
+        ↓
+Workflow passes or fails
+```
 
-* The chatbot is using an expected Claude model name
-* The system prompt still mentions `ARTI 409`
+The workflow performs these core steps:
 
-These tests are simple on purpose. The focus of the lab was to understand GitHub Actions, pull requests, and rollback behavior.
+1. Checks out the repository
+2. Configures Python
+3. Installs dependencies
+4. Installs or invokes `pytest`
+5. Runs the automated tests
+6. Reports the result in GitHub
+
+This provides an automated safety check before code changes are merged.
 
 ---
 
-### `.github/workflows/ci.yml`
+## Branch and Pull-Request Workflow
 
-This file defines the GitHub Actions workflow.
+The lab used a feature-branch workflow rather than making every change directly on `main`.
 
-The workflow runs automatically on:
+```text
+Create feature branch
+        ↓
+Implement tests and CI workflow
+        ↓
+Commit changes
+        ↓
+Push branch
+        ↓
+Open pull request
+        ↓
+GitHub Actions runs
+        ↓
+Review CI result
+        ↓
+Merge into main
+```
 
-* Every push
-* Every pull request
+Example commands:
 
-The workflow performs these steps:
+```bash
+git checkout -b add-ci
+git add test_chatbot.py .github/workflows/ci.yml
+git commit -m "Add CI workflow and chatbot tests"
+git push -u origin add-ci
+```
 
-1. Checks out the repository code
-2. Sets up Python 3.11
-3. Installs project dependencies
-4. Installs `pytest`
-5. Runs the test suite
-
-This creates an automatic safety check for the project.
+After the pull request was reviewed and CI passed, the branch was merged into `main`.
 
 ---
 
-## Intentional Failure
+## Intentional Regression Exercise
 
-After the CI workflow was working, I intentionally changed the chatbot system prompt from:
+To understand how CI protects a codebase, the chatbot was intentionally changed in a way that violated an existing test expectation.
+
+The automated test expected the system configuration to contain the course identifier:
 
 ```text
 ARTI 409
 ```
 
-to:
+The value was temporarily changed, causing the test to fail.
+
+GitHub Actions detected the regression and displayed a failed workflow result.
+
+This exercise demonstrated that CI can catch unintended behavior before additional changes are built on top of a broken state.
+
+---
+
+## Safe Recovery with `git revert`
+
+The regression was corrected using:
+
+```bash
+git revert HEAD
+```
+
+Unlike deleting or rewriting Git history, `git revert` creates a new commit that reverses an earlier change.
+
+This is safer in collaborative repositories because:
+
+- The original change remains visible
+- The corrective action is documented
+- Team members do not need to repair rewritten history
+- The repository returns to a known working state
+- CI can verify that the correction succeeded
+
+Recovery workflow:
 
 ```text
-your course
+Broken commit reaches main
+        ↓
+GitHub Actions fails
+        ↓
+Failure is investigated
+        ↓
+git revert creates corrective commit
+        ↓
+Corrective commit is pushed
+        ↓
+GitHub Actions runs again
+        ↓
+Tests pass
 ```
-
-This caused the automated test to fail because the test expected the system prompt to still contain `ARTI 409`.
-
-GitHub Actions detected the issue and showed a red failed check.
-
-This demonstrated how CI can catch a regression automatically.
 
 ---
 
-## Safe Rollback with Git Revert
+## Testing Scope
 
-To fix the broken commit, I used:
+The repository uses lightweight smoke tests because the primary objective was learning CI and Git workflow fundamentals.
 
-```bash
-git revert HEAD
-```
+The tests verify selected application assumptions such as:
 
-This created a new commit that reversed the bad change.
+- Expected model configuration format
+- Presence of the course context in the system prompt
+- Importable application configuration
+- Basic regression protection
 
-The important point is that `git revert` does not delete history. Instead, it records the fix as a new commit.
+The test suite is intentionally limited and should not be interpreted as production-level LLM application coverage.
 
-This is the safer approach for team projects because:
+A larger AI application would also test:
 
-* The original mistake remains visible
-* The rollback is clearly documented
-* Other team members stay in sync
-* The main branch returns to a working state
-
----
-
-## Important Git Commands Used
-
-```bash
-git checkout -b add-ci
-```
-
-Creates a new branch for the CI work.
-
-```bash
-git add test_chatbot.py .github/workflows/ci.yml
-```
-
-Stages the test file and workflow file.
-
-```bash
-git commit -m "Add CI workflow and chatbot tests"
-```
-
-Creates a saved version of the CI changes.
-
-```bash
-git push -u origin add-ci
-```
-
-Pushes the branch to GitHub.
-
-```bash
-git switch main
-git pull origin main
-```
-
-Switches back to the main branch and downloads the latest merged changes.
-
-```bash
-git revert HEAD
-```
-
-Safely undoes the latest bad commit by creating a new revert commit.
-
-```bash
-git push origin main
-```
-
-Pushes the rollback commit to GitHub.
+- API failure handling
+- Timeouts and retries
+- Invalid or empty input
+- Structured response validation
+- Rate-limit behavior
+- Provider fallback
+- Prompt injection controls
+- Output safety checks
+- Token and cost limits
+- Observability and logging
 
 ---
 
 ## Skills Demonstrated
 
-This lab demonstrates practical experience with:
+### AI and API Integration
 
-* Git
-* GitHub
-* GitHub CLI
-* GitHub Actions
-* Continuous Integration
-* Pull requests
-* Branching
-* Commits
-* Remote repositories
-* Automated testing with `pytest`
-* Debugging failed CI runs
-* Safe rollback using `git revert`
-* Version control best practices
+- Anthropic API usage
+- Conversation-history handling
+- Streaming model responses
+- Environment-based configuration
+- Separation of secrets from source code
+
+### Software Engineering
+
+- Modular Python application structure
+- Dependency management
+- Basic automated testing
+- Regression protection
+- Error-aware development practices
+
+### Git and Collaboration
+
+- Feature branches
+- Structured commits
+- Pull requests
+- Merge workflow
+- Remote repositories
+- Transparent history
+- Safe rollback
+
+### DevOps Foundations
+
+- GitHub Actions
+- Continuous integration
+- Automated test execution
+- Failed-workflow investigation
+- Recovery verification
+
+---
+
+## Limitations
+
+- Small command-line learning application
+- No web or mobile interface
+- No database or persistent conversation storage
+- No authentication or user management
+- Minimal test coverage
+- No structured logging or monitoring
+- No retry or fallback provider architecture
+- No prompt-evaluation framework
+- No token, latency, or cost dashboard
+- No production security review
+- Not intended as a production chatbot
 
 ---
 
 ## Key Learning
 
-The biggest learning from this activity is that professional development is not only about writing code. It is also about protecting the codebase, catching mistakes early, and recovering safely when something goes wrong.
+This project reinforced that professional AI engineering requires more than calling a model API.
 
-CI gives developers an automatic safety net. Rollback gives developers a recovery plan.
+A reliable workflow also requires:
 
-Together, they help keep software and AI systems healthy over time.
+```text
+Build
+  → Test
+  → Commit
+  → Review
+  → Integrate
+  → Detect failures
+  → Recover safely
+  → Verify stability
+```
 
+The most important outcome was learning how automated tests, continuous integration, pull requests, and transparent rollback practices work together to protect a codebase.
+
+---
+
+## Current Applied AI/ML Work
+
+My current flagship projects include:
+
+- [TriageAI — ESI Clinical Intake & Care Routing Assistant](https://github.com/chintan-02/triageai-esi-care-routing)
+- [PolicyGPT Enterprise — Evidence-First RAG for Policy and Compliance](https://github.com/chintan-02/policygpt-enterprise)
+- [ResumeIQ — AI Resume Intelligence Platform](https://github.com/chintan-02/smart-resume-classifier)
+- [Applied AI/ML Engineering Portfolio](https://chintan-patel-ai.netlify.app/)
+
+---
+
+## Author
+
+**Chintan Patel**
+
+- [GitHub](https://github.com/chintan-02)
+- [LinkedIn](https://www.linkedin.com/in/chintan-patel-987765129/)
+- [Portfolio](https://chintan-patel-ai.netlify.app/)
+
+---
+
+## License
+
+This project is available under the [MIT License](LICENSE).
+
+---
+
+## Repository Note
+
+This repository remains public as evidence of API integration, Git, testing, CI/CD, pull-request, and rollback fundamentals. It is not one of my current flagship AI engineering projects.
